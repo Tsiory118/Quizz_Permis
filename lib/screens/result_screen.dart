@@ -9,13 +9,16 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String message = (score / total) >= 0.5
-        ? "Bravo !"
-        : "Tu peux faire mieux !";
+    String message;
+    IconData icon;
 
-    IconData icon = (score / total) >= 0.5
-        ? Icons.emoji_events
-        : Icons.mood_bad;
+    if (score == total) {
+      message = "Arahabaina ianao !";
+      icon = Icons.emoji_events;
+    } else {
+      message = "Mamerina afaka tapabolana";
+      icon = Icons.mood_bad;
+    }
 
     return Scaffold(
       body: Center(
@@ -32,13 +35,13 @@ class ResultScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                "Score : $score / $total",
+                "Valiny marina : $score / $total",
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(height: 30),
               ElevatedButton.icon(
                 icon: Icon(Icons.replay),
-                label: Text("Rejouer"),
+                label: Text("Mpiadina manaraka"),
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,

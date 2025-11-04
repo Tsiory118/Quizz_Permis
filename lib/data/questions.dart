@@ -22,8 +22,20 @@ final List<Question> questions = [
     correctAnswerIndex: 2,
   ),
   Question(
-    questionText: "Inona no atao voalohany rehefa manomboka mitondra fiara ?",
-    answers: ["Mamelona fiara", "Manamarina ny fipetrahan’ny seza sy fitaratra", "Mametraka fehikibo fiarovana", "Manala fein à main"],
-    correctAnswerIndex: 1,
-  ),
+  questionText: "Priorite inona iO ?",
+  imagePath: "assets/images/priorite.png", // ajoute ici ton image
+  answers: [
+    "Gauche",
+    "Droite",
+    "Gauche Droite",
+    "Absolue"
+  ],
+  correctAnswerIndex: 1,
+),
+
+  // Question(
+  //   questionText: "Inona no atao voalohany rehefa manomboka mitondra fiara ?",
+  //   answers: ["Mamelona fiara", "Manamarina ny fipetrahan’ny seza sy fitaratra", "Mametraka fehikibo fiarovana", "Manala fein à main"],
+  //   correctAnswerIndex: 1,
+  // ),
 ];

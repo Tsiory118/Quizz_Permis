@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'quiz_screen.dart';
+import 'login_screen.dart'; // <-- import du nouvel écran
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,7 +16,8 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
     _controller =
         AnimationController(duration: Duration(seconds: 1), vsync: this);
-    _scaleAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
+    _scaleAnimation =
+        CurvedAnimation(parent: _controller, curve: Curves.easeOut);
     _controller.forward();
   }
 
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen>
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => QuizScreen()),
+                MaterialPageRoute(builder: (_) => LoginScreen()), // <-- vers login
               );
             },
           ),
