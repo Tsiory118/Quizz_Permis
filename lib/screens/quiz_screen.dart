@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:math';
 import '../data/questions.dart';
 import 'result_screen.dart';
 
@@ -14,10 +15,25 @@ class _QuizScreenState extends State<QuizScreen> {
   int remainingTime = 30;
   Timer? timer;
 
+  late List<int> randomOrder; // Contiendra les index des 8 questions tirées au hasard
+  final int totalQuestions = 8; // 🔹 nombre de questions à afficher
+
   @override
   void initState() {
     super.initState();
+    generateRandomQuestions();
     startTimer();
+  }
+
+  /// Sélectionne 8 questions aléatoires parmi toutes
+  void generateRandomQuestions() {
+    final allIndexes = List<int>.generate(questions.length, (i) => i);
+    allIndexes.shuffle(Random());
+
+    // 🔹 Si tu veux afficher 8 questions
+    randomOrder = allIndexes.take(
+      questions.length >= totalQuestions ? totalQuestions : questions.length,
+    ).toList();
   }
 
   void startTimer() {
@@ -33,13 +49,14 @@ class _QuizScreenState extends State<QuizScreen> {
         });
       } else {
         t.cancel();
-        moveToNextQuestion(); // Réponse incorrecte si le temps est écoulé
+        moveToNextQuestion();
       }
     });
   }
 
   void answerQuestion(int selectedIndex) {
-    if (selectedIndex == questions[currentQuestionIndex].correctAnswerIndex) {
+    int currentIndex = randomOrder[currentQuestionIndex];
+    if (selectedIndex == questions[currentIndex].correctAnswerIndex) {
       score++;
     }
     moveToNextQuestion();
@@ -48,11 +65,11 @@ class _QuizScreenState extends State<QuizScreen> {
   void moveToNextQuestion() {
     timer?.cancel();
 
-    if (currentQuestionIndex + 1 >= questions.length) {
+    if (currentQuestionIndex + 1 >= randomOrder.length) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => ResultScreen(score: score, total: questions.length),
+          builder: (_) => ResultScreen(score: score, total: randomOrder.length),
         ),
       );
     } else {
@@ -71,11 +88,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final question = questions[currentQuestionIndex];
+    final question = questions[randomOrder[currentQuestionIndex]];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Question ${currentQuestionIndex + 1}'),
+        title: Text('Question ${currentQuestionIndex + 1}/$totalQuestions'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -96,7 +113,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     child: Image.asset(
                       question.imagePath!,
                       width: double.infinity,
-                      fit: BoxFit.contain, // Garde les proportions et s'adapte à la largeur
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
