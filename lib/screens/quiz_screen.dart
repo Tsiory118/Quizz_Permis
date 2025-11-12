@@ -15,8 +15,8 @@ class _QuizScreenState extends State<QuizScreen> {
   int remainingTime = 30;
   Timer? timer;
 
-  late List<int> randomOrder; // Contiendra les index des 8 questions tirées au hasard
-  final int totalQuestions = 8; // 🔹 nombre de questions à afficher
+  late List<int> randomOrder;
+  final int totalQuestions = 8;
 
   @override
   void initState() {

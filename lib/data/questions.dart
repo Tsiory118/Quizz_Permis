@@ -23,7 +23,7 @@ final List<Question> questions = [
   ),
   Question(
   questionText: "Priorite inona io ?",
-  imagePath: "assets/images/priorite.png", // ajoute ici ton image
+  imagePath: "assets/images/priorite.png",
   answers: [
     "Gauche",
     "Droite",
@@ -34,7 +34,7 @@ final List<Question> questions = [
 ),
 Question(
   questionText: "Midika inona io ?",
-  imagePath: "assets/images/interdiction.jpg", // ajoute ici ton image
+  imagePath: "assets/images/interdiction.jpg",
   answers: [
     "Tsy azo atao ny miverindalana",
     "Tsy azo androsoana",

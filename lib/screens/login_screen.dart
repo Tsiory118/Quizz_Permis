@@ -8,7 +8,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
-  final String _fixedUser = "ID072025"; // identifiant fixe
+  final String _fixedUser = "B7250"; // identifiant fixe
 
   void _checkLogin() {
     if (_usernameController.text == _fixedUser) {
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Veuillez entrer votre code",
+              "Veuillez entrer votre ID",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
